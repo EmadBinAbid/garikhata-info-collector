@@ -21,35 +21,40 @@ exports.validateUser = function(expressInstance, jwtInstance)
     //Validating User
     expressInstance.post('/login', (req, res) => 
     {
-        UserModel.findOne(req.body.user, (err, dbObject) => 
+        if(req.body.user.username && req.body.user.password)
         {
-            if(err)
+            UserModel.findOne(req.body.user, (err, dbObject) => 
             {
-                res.status(401).send('Unauthorized');
-            }
-            else
-            {
-                if(dbObject === null)
+                console.log(req.body.user);
+                if(err)
                 {
                     res.status(401).send('Unauthorized');
                 }
                 else
                 {
-                    const signObject = { "user": dbObject };
-                    jwtInstance.sign(signObject, config.jwt_key, (err, token) => 
+                    console.log(dbObject);
+                    if(dbObject === null)
                     {
-                        if(err)
+                        res.status(401).send('Unauthorized');
+                    }
+                    else
+                    {
+                        const signObject = { "user": dbObject };
+                        jwtInstance.sign(signObject, config.jwt_key, (err, token) => 
                         {
-                            res.status(401).send('Unauthorized');
-                        }
-                        else
-                        {
-                            res.json({ "user": dbObject, "token": token });
-                        }
-                    });
+                            if(err)
+                            {
+                                res.status(401).send('Unauthorized');
+                            }
+                            else
+                            {
+                                res.json({ "user": dbObject, "token": token });
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 }
 

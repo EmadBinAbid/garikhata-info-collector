@@ -1,0 +1,28 @@
+<!-- <ion-header>
+  <button (click)="logoutUser()" ion-button block>Logout</button>
+</ion-header> -->
+
+
+<ion-header>
+  <ion-navbar>
+    
+    <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons>
+      <button (click)="logoutUser()" ion-button icon-only>
+        Logout
+      </button>
+    </ion-buttons>
+    
+
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs>
+  <ion-tab [root]="newPlotPage" tabTitle="New" tabIcon="add"></ion-tab>
+  <ion-tab [root]="plotListPage" tabTitle="List" tabIcon="list"></ion-tab>
+</ion-tabs>

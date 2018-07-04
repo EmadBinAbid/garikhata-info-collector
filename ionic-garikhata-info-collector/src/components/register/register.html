@@ -1,0 +1,33 @@
+<div class="main-div">
+    <form (ngSubmit)="register()">
+      <ion-list>
+        <ion-item>
+          <ion-label stacked>First name</ion-label>
+          <ion-input type="text" [(ngModel)]="registerForm.firstName" name="firstName"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Last name</ion-label>
+          <ion-input type="text" [(ngModel)]="registerForm.lastName" name="lastName"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Username</ion-label>
+          <ion-input type="text" [(ngModel)]="registerForm.username" name="username"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Email</ion-label>
+          <ion-input type="email" [(ngModel)]="registerForm.email" name="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="registerForm.password" name="password"></ion-input>
+        </ion-item>
+      </ion-list>
+  
+      <button type="submit" ion-button block>Register</button>
+  
+    </form>
+  </div>

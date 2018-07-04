@@ -20,7 +20,7 @@ response type: sends a json object of type { "plot": object }. Else sends "Unaut
 */
 addPlot = function(expressInstance, jwtInstance, verifyToken, multerInstance)
 {
-    expressInstance.post('/plot', verifyToken, multerInstance.single('plotImage'), (req, res) => {
+    expressInstance.post('/plot', verifyToken, /*multerInstance.single('plotImage'),*/ (req, res) => {
         jwtInstance.verify(req.token, config.jwt_key, (err, userData) => {
             if(err)
             {
@@ -28,20 +28,44 @@ addPlot = function(expressInstance, jwtInstance, verifyToken, multerInstance)
             }
             else
             {
-                var newPlot = new PlotModel(req.body);
-                newPlot.ploImage.data = fs.readFileSync(req.file.path);
-                newPlot.plotImage.fileInfo = req.file;
-                
-                newPlot.save( (err, dbObject) => {
+                PlotModel.findOne({ plotId: req.body.plotId }, (err, dbObject) => {
                     if(err)
                     {
+                        console.log(dbObject);
                         res.status(400).send("Bad request");
                     }
                     else
                     {
-                        res.json({ "plot": dbObject });
+                        if(dbObject === null)
+                        {
+                            var newPlot = new PlotModel(req.body);
+
+                            if(req.file)
+                            {
+                                newPlot.ploImage.data = fs.readFileSync(req.file.path);
+                                newPlot.plotImage.fileInfo = req.file;
+                            }
+                            
+                            console.log(req.body);
+
+                            newPlot.save( (err, dbObject) => {
+                                if(err)
+                                {
+                                    console.log(err);
+                                    res.status(400).send("Bad request");
+                                }
+                                else
+                                {
+                                    res.json({ "plot": dbObject });
+                                }
+                            });
+                        }
+                        else
+                        {
+                            res.status(400).send("Bad request");
+                        }
                     }
-                });
+                } );
             }
         });
     });

@@ -1,0 +1,18 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Plot List</ion-title>
+  </ion-navbar>
+
+  <button (click)="refresh()" ion-button round>Refresh</button>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="main-div">
+    <div *ngFor="let plot of plotList">
+      {{ plot.plotId }}
+    </div>
+  </div>
+</ion-content>
