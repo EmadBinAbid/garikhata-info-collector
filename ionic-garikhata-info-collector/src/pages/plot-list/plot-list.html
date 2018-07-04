@@ -11,7 +11,7 @@
 
 <ion-content padding>
   <div class="main-div">
-    <div *ngFor="let plot of plotList">
+    <div *ngFor="let plot of plotList; let i=index" (click)="selectPlot(i)">
       {{ plot.plotId }}
     </div>
   </div>

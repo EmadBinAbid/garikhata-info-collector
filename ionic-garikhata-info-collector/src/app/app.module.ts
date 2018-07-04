@@ -18,6 +18,7 @@ import { LoginComponent } from '../components/login/login';
 import { RegisterComponent } from '../components/register/register';
 import { AuthGuardProvider } from '../providers/auth-guard/auth-guard';
 import { UserProvider } from '../providers/user/user';
+import { PlotDescriptionPage } from '../pages/plot-description/plot-description';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserProvider } from '../providers/user/user';
     PlotListPage,
     LoginRegisterPage,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PlotDescriptionPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { UserProvider } from '../providers/user/user';
     PlotListPage,
     LoginRegisterPage,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    PlotDescriptionPage
   ],
   providers: [
     StatusBar,

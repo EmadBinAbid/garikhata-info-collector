@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>PlotDescription</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="main-div">
+    <div>
+      <span style="font-weight: bold">Plot ID: </span>{{ selectedObject.plotId }} <br><br>
+      <span style="font-weight: bold">Plot Use: </span>{{ selectedObject.plotUse }} <br><br>
+      <span style="font-weight: bold">Front Width: </span>{{ selectedObject.frontWidth }} <br><br>
+      <span style="font-weight: bold">Building Name: </span>{{ selectedObject.buildingName }} <br><br>
+      <span style="font-weight: bold">Official Plot Number: </span>{{ selectedObject.officialPlotNumber }} <br><br>
+      <span style="font-weight: bold">Year of Built: </span>{{ selectedObject.yearOfBuilt }} <br><br>
+      <span style="font-weight: bold">No. of Floors: </span>{{ selectedObject.numOfFloors }} <br><br>
+      <span style="font-weight: bold">Floor Usage: </span><br>
+        <div *ngFor="let floor of selectedObject.eachFloorUsage; let i=index">
+          <span style="text-decoration: underline">Floor {{i}}:</span> {{ floor.floor }} <br>
+        </div>
+    </div>
+  </div>
+</ion-content>

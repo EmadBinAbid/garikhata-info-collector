@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PlotProvider } from '../../providers/plot/plot';
+import { PlotDescriptionPage } from '../plot-description/plot-description';
 
 /**
  * Generated class for the PlotListPage page.
@@ -38,6 +39,13 @@ export class PlotListPage {
     .subscribe( (result)=>{
       this.plotList = result["plot"];
     } );
+  }
+
+  selectPlot(index)
+  {
+    this.plotProvider.setCurrentSelectedPlotIndex(index);
+
+    this.navCtrl.push(PlotDescriptionPage);
   }
 
 }

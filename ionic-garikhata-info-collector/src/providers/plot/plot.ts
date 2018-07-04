@@ -11,6 +11,9 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class PlotProvider {
 
+  plotList: Array<Object>;
+  currentSelectedPlotIndex = -1;
+
   constructor(public http: HttpClient) {
     console.log('Hello PlotProvider Provider');
   }
@@ -37,8 +40,19 @@ export class PlotProvider {
     .pipe(
       tap( (response)=> {
         console.log("Get plots.");
+        this.plotList = response["plot"];
       } )
     );
+  }
+
+  setCurrentSelectedPlotIndex(index)
+  {
+    this.currentSelectedPlotIndex = index;
+  }
+
+  getSelectedPlotInfo()
+  {
+    return this.plotList[this.currentSelectedPlotIndex];
   }
 
 }
