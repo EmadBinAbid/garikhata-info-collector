@@ -1,7 +1,9 @@
 <ion-menu [content]="content">
-    <ion-content padding>
-        <!-- <button (click)="logoutUser()" ion-button rounded>Logout</button> -->
-    </ion-content>
+    <ion-navbar>
+        <ion-buttons start>
+            <button (click)="logoutUser()" ion-button icon-only>Logout</button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-menu>
 
 <ion-nav [root]="rootPage" #content></ion-nav>
