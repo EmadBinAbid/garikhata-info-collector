@@ -34,9 +34,9 @@ import { PlotDescriptionPage } from '../pages/plot-description/plot-description'
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -2,15 +2,10 @@ import { Component } from '@angular/core';
 import { Credential } from '../../interfaces/credential.interface';
 import { LoginProvider } from '../../providers/login/login';
 import { User } from '../../interfaces/user.interface';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { TabsPage } from '../../pages/tabs/tabs';
+import { LoginRegisterPage } from '../../pages/login-register/login-register';
 
-/**
- * Generated class for the LoginComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'login',
   templateUrl: 'login.html'
@@ -24,26 +19,46 @@ export class LoginComponent {
 
   constructor(
     private loginProvider: LoginProvider,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private alertCtrl: AlertController
   ) {
     console.log('Hello LoginComponent Component');
   }
 
   login()
   {
-    //console.log(this.loginForm);
-    this.loginProvider.login(this.loginForm)
-    .subscribe( ( result: {user: User} )=> {
-      if(result.user)
-      {
-        console.log("Logged in.");
-        this.navCtrl.push(TabsPage);
+    if(this.loginForm.username===undefined || this.loginForm.username==="" ||
+    this.loginForm.password===undefined || this.loginForm.password==="")
+    {
+      this.presentAlert('Credential Error', 'Username and password are required fields.', ['Ok']);
+    }
+    else
+    {
+      this.loginProvider.login(this.loginForm)
+      .subscribe( ( result: {user: User} )=> {
+        if(result.user)
+        {
+          console.log("Logged in.");
+          this.navCtrl.pop();
+        }
+      },  
+      (err) => {
+        this.presentAlert('Credential Error', 'Invalid username or password.', ['Ok']);
       }
-      else
+    );
+    }
+  }
+
+  presentAlert(title: string, subTitle: string, buttons: Array<string>)
+  {
+    let alert = this.alertCtrl.create(
       {
-        console.log("Invalid credentials.");
+        title: title,
+        subTitle: subTitle,
+        buttons: buttons
       }
-    } );
+    );
+    alert.present();
   }
 
 }

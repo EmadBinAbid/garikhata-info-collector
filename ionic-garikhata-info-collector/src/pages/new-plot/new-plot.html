@@ -1,9 +1,3 @@
-<!--
-  Generated template for the NewPlotPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -18,41 +12,42 @@
       <ion-list-header>Plot Information</ion-list-header>
       <ion-item>
         <ion-label stacked>Plot ID</ion-label>
-        <ion-input type="text" [(ngModel)]="newPlotForm.plotId" name="plotId"></ion-input>
+        <ion-input type="text" [(ngModel)]="newPlotForm.plotId" name="plotId" disabled="{{isDisabled}}" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Plot Use</ion-label>
-        <ion-input type="text" [(ngModel)]="newPlotForm.plotUse" name="plotUse"></ion-input>
+        <ion-input type="text" [(ngModel)]="newPlotForm.plotUse" name="plotUse" disabled="{{isDisabled}}"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Front Width</ion-label>
-        <ion-input type="text" [(ngModel)]="newPlotForm.frontWidth" name="frontWidth"></ion-input>
+        <ion-input type="text" [(ngModel)]="newPlotForm.frontWidth" name="frontWidth" disabled="{{isDisabled}}"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Building Name</ion-label>
-        <ion-input type="text" [(ngModel)]="newPlotForm.buildingName" name="buildingName"></ion-input>
+        <ion-input type="text" [(ngModel)]="newPlotForm.buildingName" name="buildingName" disabled="{{isDisabled}}"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Official Plot Number</ion-label>
-        <ion-input type="text" [(ngModel)]="newPlotForm.officialPlotNumber" name="officialPlotNumber"></ion-input>
+        <ion-input type="text" [(ngModel)]="newPlotForm.officialPlotNumber" name="officialPlotNumber" disabled="{{isDisabled}}"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Year of Built</ion-label>
-        <ion-input type="text" [(ngModel)]="newPlotForm.yearOfBuilt" name="yearOfBuilt"></ion-input>
+        <ion-input type="text" [(ngModel)]="newPlotForm.yearOfBuilt" name="yearOfBuilt" disabled="{{isDisabled}}"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>No. of Floors</ion-label>
-        <ion-input type="number" [(ngModel)]="newPlotForm.numOfFloors" name="numOfFloors"></ion-input>
+        <ion-input type="number" [(ngModel)]="newPlotForm.numOfFloors" name="numOfFloors" disabled="{{isDisabled}}"></ion-input>
       </ion-item>
     </ion-list>
 
-    <button type="button" (click)="proceedToFloorInfo()" ion-button block>Proceed To Floor Info</button>
+    <button type="button" (click)="proceedToFloorInfo()" *ngIf="shouldProceed===false" ion-button block>Proceed To Floor Info</button>
+    <button type="button" (click)="editInfo()" *ngIf="shouldProceed===true" ion-button block>Edit Information</button>
 
     <ion-list *ngIf="shouldProceed === true">
       <ion-list-header>Floor Information</ion-list-header>
