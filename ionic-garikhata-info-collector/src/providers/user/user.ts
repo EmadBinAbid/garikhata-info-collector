@@ -12,7 +12,7 @@ export class UserProvider {
 
   register(user: User)
   {
-    return this.http.post(`http://localhost:3000/user`, { user: user })
+    return this.http.post(`https://ancient-beach-51975.herokuapp.com/user`, user)
     .pipe(
       tap( (response) => {
         console.log("Registered.");

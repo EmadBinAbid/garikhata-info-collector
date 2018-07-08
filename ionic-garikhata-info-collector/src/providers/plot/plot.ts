@@ -26,7 +26,7 @@ export class PlotProvider {
       }
     );
 
-    return this.http.post(`http://localhost:3000/plot`, plotObject, { headers })
+    return this.http.post(`https://ancient-beach-51975.herokuapp.com/plot`, plotObject, { headers })
     .pipe(
       tap( (response)=> {
         console.log("Plot added.");
@@ -36,7 +36,7 @@ export class PlotProvider {
 
   getAllPlots()
   {
-    return this.http.get(`http://localhost:3000/plot/all-plots`)
+    return this.http.get(`https://ancient-beach-51975.herokuapp.com/plot/all-plots`)
     .pipe(
       tap( (response)=> {
         console.log("Get plots.");

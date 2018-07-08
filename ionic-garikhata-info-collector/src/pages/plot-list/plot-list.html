@@ -3,16 +3,20 @@
   <ion-navbar>
     <ion-title>Plot List</ion-title>
   </ion-navbar>
-
-  <button (click)="refresh()" ion-button round>Refresh</button>
-
 </ion-header>
-
 
 <ion-content padding>
   <div class="main-div">
-    <div *ngFor="let plot of plotList; let i=index" (click)="selectPlot(i)">
-      {{ plot.plotId }}
+    <div class="heading">
+      <a (click)="refresh()">Plot List <span style="font-size: 12px;">(Click to view updated list)</span></a><br>
+    </div>
+    Following is the list of all plots whose information is already fed into the system. Click
+    to view plot details. 
+    
+    <br><br>
+    <div class="plot-list" *ngFor="let plot of plotList; let i=index" (click)="selectPlot(i)">
+      <span class="plotId">Plot ID:</span> {{ plot.plotId }}<br>
+      <span class="plotId">Official Plot No.:</span> {{ plot.officialPlotNumber }}
     </div>
   </div>
 </ion-content>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from '../../interfaces/user.interface';
 import { UserProvider } from '../../providers/user/user';
-import { AlertController, NavController } from 'ionic-angular';
+import { AlertController, NavController, LoadingController } from 'ionic-angular';
 import { TabsPage } from '../../pages/tabs/tabs';
 
 /**
@@ -27,13 +27,16 @@ export class RegisterComponent {
   constructor(
     private userProvider: UserProvider,
     private alertCtrl: AlertController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController
   ) {
     console.log('Hello RegisterComponent Component');
   }
 
   register()
   {
+    this.presentLoadingDefault();
+
     if(this.registerForm.firstName==="" || this.registerForm.lastName==="" || this.registerForm.username==="" ||
     this.registerForm.email==="" || this.registerForm.password==="")
     {
@@ -69,6 +72,18 @@ export class RegisterComponent {
       }
     );
     alert.present();
+  }
+
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 3000);
   }
 
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Credential } from '../../interfaces/credential.interface';
 import { LoginProvider } from '../../providers/login/login';
 import { User } from '../../interfaces/user.interface';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { TabsPage } from '../../pages/tabs/tabs';
 import { LoginRegisterPage } from '../../pages/login-register/login-register';
 
@@ -20,13 +20,16 @@ export class LoginComponent {
   constructor(
     private loginProvider: LoginProvider,
     private navCtrl: NavController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController
   ) {
     console.log('Hello LoginComponent Component');
   }
 
   login()
   {
+    this.presentLoadingDefault();
+
     if(this.loginForm.username===undefined || this.loginForm.username==="" ||
     this.loginForm.password===undefined || this.loginForm.password==="")
     {
@@ -59,6 +62,18 @@ export class LoginComponent {
       }
     );
     alert.present();
+  }
+
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+  
+    loading.present();
+  
+    setTimeout(() => {
+      loading.dismiss();
+    }, 3000);
   }
 
 }

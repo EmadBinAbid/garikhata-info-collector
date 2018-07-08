@@ -1,25 +1,29 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>PlotDescription</ion-title>
+    <ion-title>Plot Description</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+  <div class="heading">
+    Plot Details
+    <br><br>
+  </div>
+
   <div class="main-div">
     <div>
-      <span style="font-weight: bold">Plot ID: </span>{{ selectedObject.plotId }} <br><br>
-      <span style="font-weight: bold">Plot Use: </span>{{ selectedObject.plotUse }} <br><br>
-      <span style="font-weight: bold">Front Width: </span>{{ selectedObject.frontWidth }} <br><br>
-      <span style="font-weight: bold">Building Name: </span>{{ selectedObject.buildingName }} <br><br>
-      <span style="font-weight: bold">Official Plot Number: </span>{{ selectedObject.officialPlotNumber }} <br><br>
-      <span style="font-weight: bold">Year of Built: </span>{{ selectedObject.yearOfBuilt }} <br><br>
-      <span style="font-weight: bold">No. of Floors: </span>{{ selectedObject.numOfFloors }} <br><br>
-      <span style="font-weight: bold">Floor Usage: </span><br>
+      <span class="plotDetails" >Plot ID: </span> <span class="plotDetailsMore">{{ selectedObject.plotId }} </span><br><br>
+      <span class="plotDetails">Plot Use: </span> <span class="plotDetailsMore">{{ selectedObject.plotUse }} </span><br><br>
+      <span class="plotDetails">Front Width: </span> <span class="plotDetailsMore">{{ selectedObject.frontWidth }} </span><br><br>
+      <span class="plotDetails">Building Name: </span> <span class="plotDetailsMore">{{ selectedObject.buildingName }}</span> <br><br>
+      <span class="plotDetails">Official Plot Number: </span> <span class="plotDetailsMore">{{ selectedObject.officialPlotNumber }}</span> <br><br>
+      <span class="plotDetails">Year of Built: </span><span class="plotDetailsMore">{{ selectedObject.yearOfBuilt }}</span> <br><br>
+      <span class="plotDetails">No. of Floors: </span><span class="plotDetailsMore">{{ selectedObject.numOfFloors }} </span><br><br>
+      <span class="plotDetails">Floor Usage: </span><br>
         <div *ngFor="let floor of selectedObject.eachFloorUsage; let i=index">
-          <span style="text-decoration: underline">Floor {{i}}:</span> {{ floor.floor }} <br>
+          <span class="plotDetails">Floor {{i}}:</span> <span class="plotDetailsMore">{{ floor.floor }}</span> <br>
         </div>
     </div>
   </div>

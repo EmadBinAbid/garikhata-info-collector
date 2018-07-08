@@ -1,3 +1,29 @@
 page-plot-description {
 
 }
+
+.heading
+{
+    color: color($colors, primary);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.main-div
+{
+    // background: color($colors, light);
+}
+
+.plotDetails
+{
+    font-weight: bold; 
+    color: color($colors, primary);
+    border-bottom: 1px solid color($colors, primary);
+}
+
+.plotDetailsMore
+{
+    text-decoration: underline;
+    color: color($colors, primary);
+    float: right;
+}
